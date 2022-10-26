@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Vehicle as ResourcesVehicle;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -46,8 +47,8 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-      $vehicle->with('user');
-      return response()->json(['data' => $vehicle]);
+      $vehicle->load(['user', 'documents']);
+      return new ResourcesVehicle( $vehicle );
     }
 
     /**

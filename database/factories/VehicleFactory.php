@@ -21,6 +21,7 @@ class VehicleFactory extends Factory
     $modelsCount = count($brands[ $brandIndex ]['models']) - 1;
     $model = $brands[ $brandIndex ]['models'][fake()->numberBetween(0, $modelsCount)];
     return [
+      'type'  => ['car', 'bike'][ fake()->numberBetween(0, 1) ],
       'brand' => $brands[ $brandIndex ]['title'],
       'model' => $model['value'],
       'city'  => fake()->city(),
